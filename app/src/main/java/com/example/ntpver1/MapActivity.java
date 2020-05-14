@@ -129,6 +129,7 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
         });
     }
 
+    
     //검색바
     private void setSearchBar() {
         searchBar = (MaterialSearchBar) findViewById(R.id.search_bar);
