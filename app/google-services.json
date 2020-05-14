@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "535730900290",
+    "firebase_url": "https://geotest-c9a2d.firebaseio.com",
+    "project_id": "geotest-c9a2d",
+    "storage_bucket": "geotest-c9a2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535730900290:android:c4588b78c82f8d589b0cdb",
+        "android_client_info": {
+          "package_name": "com.example.ntpver1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535730900290-amr9rnfhbp9u6k8gne6hekeui9krbuas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRo5dYag4CpeJPBwzwmmdkrRL4-n8FyV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535730900290-amr9rnfhbp9u6k8gne6hekeui9krbuas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

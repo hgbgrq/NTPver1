@@ -1,0 +1,2 @@
+rootProject.name='NTPver1'
+include ':app'
