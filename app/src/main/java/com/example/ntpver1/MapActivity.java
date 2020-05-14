@@ -100,6 +100,8 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
 
         setViews();
         setRecyclerView();
+
+        //TEST
     }
 
     private void setViews() {
@@ -120,8 +122,9 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
 
                 mapManager = MapManager.getInstance(map, thisClass);
                 mapManager.checkPermission();
+                mapManager.getMyLocation();
                 mapManager.showMyLocation();
-                doSearch("",mapManager.getSearchCentermymakerlntlng().latitude, mapManager.getSearchCentermymakerlntlng().longitude , 500 ,  UPDATE);
+                doSearch("",mapManager.getSearchCentermymakerlntlng().latitude, mapManager.getSearchCentermymakerlntlng().longitude , 500 ,  2);
             }
         });
     }
@@ -236,8 +239,9 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
     }
 
     public void MyLocationButtonListener(View view) {
-        mapManager.checkPermission();
+
         mapManager.clickButton();
+        mapManager.CheckMoveCamera();
     }
 
     //검색바 리스너
@@ -289,6 +293,7 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
             public void onCallback(ArrayList<Store> list) {
                 Log.d(TAG, "getStoreList() is called");
                 storeAdapter.setClean();
+                mapManager.RemovePremarker();
                 for (Store store : list) {
                     addResult(store);
                     mapManager.Marking(store);

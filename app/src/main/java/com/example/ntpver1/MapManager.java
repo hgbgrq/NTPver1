@@ -2,6 +2,7 @@ package com.example.ntpver1;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -41,7 +42,7 @@ import java.util.ArrayList;
 
 import kotlin.collections.MapsKt;
 
-public class MapManager implements GoogleMap.OnMarkerClickListener
+public class MapManager extends AppCompatActivity implements GoogleMap.OnMarkerClickListener
 {
     private static final String TAG = "MapManager";
     //싱글턴 패턴
@@ -51,21 +52,14 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
         this.mapActivity = mapActivity;
         Log.d(TAG, "MapManager's constructor is called!!");
     }
-    public static MapManager getInstance(GoogleMap googleMap, MapActivity mapActivity) {
-        if (mapManager == null) {
-            mapManager = new MapManager(googleMap, mapActivity);
-        }
-
-        return mapManager;
-    }
 
     private static final int UPDATE = 2;
 
     MapActivity mapActivity;
     String ClickedStore;
     Marker mymaker;
-    Marker SearchCentermymaker;
-    Marker premaker = null;
+    Marker SearchCentermymaker ;
+    Marker premaker ;
     ArrayList<Marker> prelist = new ArrayList<>();
 
     private GoogleMap mMap;
@@ -77,6 +71,14 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
     Location myLocation;
     LocationManager manager;
 
+    public static MapManager getInstance(GoogleMap googleMap, MapActivity mapActivity) {
+        if (mapManager == null) {
+            mapManager = new MapManager(googleMap, mapActivity);
+        }
+
+        return mapManager;
+    }
+
     public LatLng getSearchCentermymakerlntlng(){
         LatLng centerlocation = new LatLng(SearchCentermymaker.getPosition().latitude , SearchCentermymaker.getPosition().longitude);
         return centerlocation;
@@ -86,6 +88,7 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
 
     //권환 확인하기
     public void checkPermission(){
+        Log.d("1", "checkPermission");
         boolean isGrant=false;
         for(String str : permission_list){
             if(ContextCompat.checkSelfPermission(mapActivity.getActivity(), str)== PackageManager.PERMISSION_GRANTED){          }
@@ -122,6 +125,7 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
     class GpsListener implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {
+            Log.d("1", "댐?");
             myLocation = location;
             manager.removeUpdates(this);
             showMyLocation();
@@ -182,7 +186,6 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(20));
 
-        CheckMoveCamera();
     }
 
     public void clickButton(){
@@ -241,6 +244,7 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
         return null;
     }
 
+    /*
     //거리를 리턴해주는 함수(내위치와 클릭된 마커를 가져온다)
     public JSONObject navigation(Location myLocation, Marker premaker ) throws IOException, JSONException {
         String site = "https://maps.googleapis.com/maps/api/directions/json?";
@@ -272,26 +276,24 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
 
         return routes;
     }
+     */
 
     public void CheckMoveCamera(){
         mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
             @Override
             public void onCameraMove() {
-
-                MapActivity MA = new MapActivity();
-
+                MapActivity mapActivity = new MapActivity();
                 CameraPosition movingposition = mMap.getCameraPosition();
-                if(distance(movingposition.target.latitude , movingposition.target.longitude , SearchCentermymaker.getPosition().latitude , SearchCentermymaker.getPosition().longitude) > 3000){
+                if(distance(movingposition.target.latitude , movingposition.target.longitude , SearchCentermymaker.getPosition().latitude , SearchCentermymaker.getPosition().longitude) > 1000){
                     LatLng location = new LatLng(movingposition.target.latitude , movingposition.target.longitude);
                     SearchCentermymaker.setPosition(location);
-                    for(Marker m : prelist){
-                        m.remove();
-                    }
-                    MA.doSearch("",movingposition.target.latitude , movingposition.target.longitude , 500 ,UPDATE );
+                    mapActivity.doSearch("", movingposition.target.latitude , movingposition.target.longitude , 500 , 2);
+
                 }
             }
         });
     }
+
 
     // 두 지점사이의 거리를 meter로 반환해 주기
     private double distance(double movinglat , double movinglnt , double centerlat , double centerlnt){
@@ -312,6 +314,12 @@ public class MapManager implements GoogleMap.OnMarkerClickListener
     // This function converts radians to decimal degrees
     private static double rad2deg(double rad) {
         return (rad * 180 / Math.PI);
+    }
+
+    public void RemovePremarker(){
+        for(Marker m : prelist){
+            m.remove();
+        }
     }
 
 
