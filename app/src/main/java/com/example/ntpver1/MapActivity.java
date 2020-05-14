@@ -98,12 +98,8 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
         myTool = new MyTool();
         dbManager = DBManager.getInstance();
 
-        mapManager.checkPermission();
-        doSearch("",mapManager.getSearchCentermymakerlntlng().latitude, mapManager.getSearchCentermymakerlntlng().longitude , 500 ,  2);
         setViews();
         setRecyclerView();
-
-        //TEST
     }
 
     private void setViews() {
@@ -123,6 +119,9 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
                 map = googleMap;
 
                 mapManager = MapManager.getInstance(map, thisClass);
+                mapManager.checkPermission();
+                mapManager.showMyLocation();
+                doSearch("",mapManager.getSearchCentermymakerlntlng().latitude, mapManager.getSearchCentermymakerlntlng().longitude , 500 ,  UPDATE);
             }
         });
     }
