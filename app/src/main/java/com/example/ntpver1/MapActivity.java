@@ -9,16 +9,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.Toast;
 
 
@@ -27,13 +23,11 @@ import com.example.ntpver1.item.Store;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mingle.sweetpick.CustomDelegate;
 import com.mingle.sweetpick.SweetSheet;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MapActivity extends AppCompatActivity implements MaterialSearchBar.OnSearchActionListener {
     private static final String TAG = "MapActivity";
@@ -88,7 +82,7 @@ public class MapActivity extends AppCompatActivity implements MaterialSearchBar.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.map_activity);
+        setContentView(R.layout.activity_map);
 
         mapAct = MapActivity.this;
         mapContext = getApplicationContext();

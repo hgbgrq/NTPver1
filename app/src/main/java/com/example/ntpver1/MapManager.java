@@ -42,16 +42,16 @@ import java.util.ArrayList;
 
 import kotlin.collections.MapsKt;
 
-public class MapManager extends AppCompatActivity implements GoogleMap.OnMarkerClickListener
-{
-    private static final String TAG = "MapManager";
-    //싱글턴 패턴
-    private static MapManager mapManager;
+public class MapManager extends AppCompatActivity implements GoogleMap.OnMarkerClickListener {
     private MapManager(GoogleMap googleMap, MapActivity mapActivity) {
         this.mMap = googleMap;
         this.mapActivity = mapActivity;
         Log.d(TAG, "MapManager's constructor is called!!");
     }
+
+    private static final String TAG = "MapManager";
+
+    private static MapManager mapManager;
 
     private static final int UPDATE = 2;
 

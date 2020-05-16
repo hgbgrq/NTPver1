@@ -38,6 +38,16 @@ import java.util.Set;
 import kotlin.collections.ArraysKt;
 
 public class DBManager {
+
+    private DBManager() {
+        results = new ArrayList<>();
+        payCategory = new ArrayList<>();
+        storeCategory = new ArrayList<>();
+        db = FirebaseFirestore.getInstance();
+
+        setTest();
+    }
+
     private static DBManager dbManager;
 
     private static final String TAG = "DBManager";
@@ -50,15 +60,6 @@ public class DBManager {
     double longitude;//추가 jjs
     int radius;//추가 jjs
     String keyWord;
-
-    private DBManager() {
-        results = new ArrayList<>();
-        payCategory = new ArrayList<>();
-        storeCategory = new ArrayList<>();
-        db = FirebaseFirestore.getInstance();
-
-        setTest();
-    }
 
     public static DBManager getInstance() {
         if (dbManager == null) {
