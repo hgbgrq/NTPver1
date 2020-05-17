@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.find_pw.FindPWActivity"></activity>
+        <activity android:name=".fragments.MenuActivity">
+        </activity>
+        <activity android:name=".login.find_pw.FindPWActivity" />
         <activity android:name=".login.register.RegisterActivity" />
 
         <meta-data
@@ -21,8 +23,7 @@
 
         <activity
             android:name=".login.login.LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name=".MapActivity"
             android:windowSoftInputMode="adjustNothing">
